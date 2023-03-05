@@ -1,0 +1,118 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-position: center;
+  background-size: cover;
+  text-decoration: none;
+}
+
+body {
+  /* background-color: #5d6d7e; */
+  font-family: sans-serif;
+  background-position: center;
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+#registration {
+  padding: 2px 2px 2px 2px;
+  text-align: center;
+  background-color: #f0ffff;
+  height: 100%;
+  width: auto;
+  background-position: center;
+}
+
+#textField {
+  width: 350px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+}
+
+#gender {
+  font-family: "Montserrat", sans-serif;
+}
+
+#sub {
+  width: 350px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 5px;
+  outline: 0px;
+  background-color: #0c6996;
+}
+
+.table-emp {
+  padding: 5px;
+  height: auto;
+  width: 100%;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  background-color: #4caf50;
+}
+
+.table-emp tr th {
+  background-color: #4caf50;
+  color: white;
+}
+
+.simple-form1 {
+  margin-left: 10px;
+  padding: 2px 2px 2px 2px;
+  text-align: center;
+  background-color: #f0ffff;
+  height: auto;
+  width: auto;
+  background-position: center;
+}
+
+.leavetable {
+  width: 100%;
+  height: auto;
+}
+
+#textField {
+  width: 350px;
+  height: 50px;
+  padding: 5px;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+}
+
+._container{
+  transform: translateY(40%);
+}
+
+.about_1 ._info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+hr{
+  margin: 5px;
+  background-color: rgb(69, 69, 69);
+  height: 3px;
+}
+
+h2{
+  margin: 10px;
+  margin-top: 5px;
+  color: #f78569;
+  font-size: 3rem;
+}
+
+p{
+  margin: 10px;
+}
+
