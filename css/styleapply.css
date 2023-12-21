@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,700");
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -15,7 +15,7 @@ body {
   font-family: sans-serif;
 }
 
-html{
+html {
   scroll-behavior: smooth;
 }
 
@@ -192,7 +192,7 @@ h6 {
   font-size: 13px;
 }
 
-.title{
+.title {
   color: #57b846;
   font-family: "Ubuntu", sans-serif;
   font-weight: 500;
@@ -572,7 +572,7 @@ td {
   padding: 9px 9px;
 }
 
-tr{
+tr {
   text-align: center;
 }
 
@@ -600,7 +600,7 @@ th {
 }
 
 @media (max-width: 550px) {
-  .leave-h2{
+  .leave-h2 {
     font-size: 1.8rem;
   }
   .leave-h2:before,
@@ -609,7 +609,7 @@ th {
   }
 }
 @media (max-width: 400px) {
-  .leave-h2{
+  .leave-h2 {
     font-size: 1.5rem;
   }
   .leave-h2:before,
@@ -677,6 +677,9 @@ th {
     content: "Leave";
   }
   .empleave-table td:nth-of-type(8):before {
+    content: "Cut Salary";
+  }
+  .empleave-table td:nth-of-type(9):before {
     content: "Status";
   }
 }

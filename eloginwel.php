@@ -59,7 +59,7 @@ $total = $row[0];
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<style>
-		.minus{
+		.minus {
 			color: red;
 		}
 	</style>

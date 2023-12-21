@@ -62,7 +62,7 @@ table {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
-.viewemp-table{
+.viewemp-table {
   margin-bottom: 5rem;
 }
 
@@ -75,11 +75,11 @@ td {
   padding: 9px 9px;
 }
 
-tr{
+tr {
   text-align: center;
 }
 
-td img{
+td img {
   align-self: center;
   border-radius: 50%;
 }
@@ -92,7 +92,7 @@ tr:hover {
   color: #009879;
 }
 
-.minus{
+.minus {
   color: red;
 }
 
@@ -102,7 +102,7 @@ th {
   color: white;
 }
 
-.empHistory{
+.empHistory {
   position: absolute;
   bottom: 2rem;
   right: 8rem;
@@ -111,15 +111,15 @@ th {
   height: 3rem;
   text-align: center;
   border-radius: 6px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
-.arrow{
+.arrow {
   font-size: 1.5rem;
 }
 
 @media (max-width: 550px) {
-  h2{
+  h2 {
     font-size: 1.8rem;
   }
   h2:before,
@@ -128,7 +128,7 @@ th {
   }
 }
 @media (max-width: 400px) {
-  h2{
+  h2 {
     font-size: 1.3rem;
   }
   h2:before,
@@ -304,7 +304,13 @@ th {
     content: "Provident Fund";
   }
   .salary-table td:nth-of-type(13):before {
+    content: "Cut Salary";
+  }
+  .salary-table td:nth-of-type(14):before {
     content: "Net Salary";
+  }
+  .salary-table td:nth-of-type(15):before {
+    content: "History";
   }
 }
 

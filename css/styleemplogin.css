@@ -104,7 +104,7 @@ h2:after {
   font-size: 1.5rem;
 }
 
-.elogin-input{
+.elogin-input {
   font-size: 1.5rem;
 }
 
@@ -119,7 +119,7 @@ h2:after {
   border-radius: 50%;
 }
 
-.h-shape{
+.h-shape {
   transition: all 0.4s ease-in-out;
   width: 50%;
   height: 100%;
@@ -302,9 +302,9 @@ th {
     bottom: 1.5rem;
     margin: 0;
   }
-  .h-shape{
-   display: none;
-  }  
+  .h-shape {
+    display: none;
+  }
   .eloginwel-form {
     left: 3rem;
   }
@@ -317,10 +317,11 @@ th {
     width: 150px;
     height: 150px;
   }
-  .eloginwel-form{
+  .eloginwel-form {
     width: 60%;
   }
-  .eloginwel-form, .elogin-input{
+  .eloginwel-form,
+  .elogin-input {
     font-size: 1rem;
   }
   .elogin-section .details-right .details-item .abt-text .large-text,
@@ -332,13 +333,14 @@ th {
   }
 }
 @media (max-width: 550px) {
-  .img-left{
+  .img-left {
     flex-direction: column;
   }
-  .eloginwel-form, .elogin-input{
+  .eloginwel-form,
+  .elogin-input {
     font-size: 1.2rem;
   }
-  .eloginwel-form{
+  .eloginwel-form {
     width: 80%;
     margin-top: 2rem;
   }
@@ -349,11 +351,12 @@ th {
   .elogin-section .details-right .details-item .abt-text .small-text {
     font-size: 0.5rem;
   }
-  .details-right{
+  .details-right {
     position: relative;
     top: 10rem;
   }
-  .elogin-h2, .elogin-table{
+  .elogin-h2,
+  .elogin-table {
     position: relative;
     top: 5rem;
   }
@@ -478,10 +481,37 @@ th {
     content: "Base Salary";
   }
   #elogin-table3 td:nth-of-type(2):before {
-    content: "Bonus";
+    content: "DA";
   }
   #elogin-table3 td:nth-of-type(3):before {
+    content: "HRA";
+  }
+  #elogin-table3 td:nth-of-type(4):before {
+    content: "Medical";
+  }
+  #elogin-table3 td:nth-of-type(5):before {
+    content: "Vehicle";
+  }
+  #elogin-table3 td:nth-of-type(6):before {
     content: "Total Salary";
+  }
+  #elogin-table3 td:nth-of-type(7):before {
+    content: "Professional Tax";
+  }
+  #elogin-table3 td:nth-of-type(8):before {
+    content: "Group Insurance";
+  }
+  #elogin-table3 td:nth-of-type(9):before {
+    content: "Income Tax";
+  }
+  #elogin-table3 td:nth-of-type(10):before {
+    content: "Provident Fund";
+  }
+  #elogin-table3 td:nth-of-type(11):before {
+    content: "Cut Salary";
+  }
+  #elogin-table3 td:nth-of-type(12):before {
+    content: "Net Salary";
   }
 }
 
