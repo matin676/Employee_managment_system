@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id       Int    @id @default(autoincrement())
+  email    String @unique
+  password String // Will be hashed in new system
+  
+  @@map("alogin") // Map to legacy table if keeping data
+}
+
+model Employee {
+  id        Int      @id @default(autoincrement())
+  firstName String
+  lastName  String
+  email     String   @unique
+  password  String   // Added for employee login
+  birthday  String?  // Using String for legacy compatibility, should be DateTime
+  gender    String?
+  contact   String?
+  nid       String?  // National ID
+  address   String?
+  dept      String?
+  degree    String?
+  pic       String?  // Path to image
+  
+  createdAt DateTime @default(now()) @map("Jdate") // Map Jdate to createdAt
+  
+  rank       Rank?
+  salaryInfo Salary? // Relation to Salary table
+  leaves     Leave[]
+  projects   Project[]
+  attendance Attendance[]
+  
+  @@map("employee")
+}
+
+model Salary {
+  id              Int @id // Shared ID with Employee
+  base            Int
+  bonus           Int @default(0)
+  total           Int
+  
+  // Legacy fields
+  DA              Int? @default(0)
+  HRA             Int? @default(0)
+  Medical         Int? @default(0)
+  Vehicle         Int? @default(0)
+  ProfessionalTax Int? @default(0)
+  GroupInsurance  Int? @default(0)
+  IncomeTax       Int? @default(0)
+  ProvidentFund   Int? @default(0)
+  NetSalary       Int? @default(0)
+  
+  employee        Employee @relation(fields: [id], references: [id], onDelete: Cascade)
+  
+  @@map("salary")
+}
+
+model Leave {
+  token      Int       @id @default(autoincrement())
+  employeeId Int       @map("id")
+  start      String?
+  end        String?
+  reason     String?
+  leaveType  String?   @map("leave")
+  cutSalary  Int?      @map("CutSalary") @default(0)
+  status     String?   @default("Pending")
+  
+  employee   Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@map("employee_leave")
+}
+
+model Project {
+  pid        Int       @id @default(autoincrement())
+  employeeId Int?      @map("eid")
+  pname      String?
+  dueDate    String?   @map("duedate")
+  subDate    String?   @map("subdate")
+  mark       Int       @default(0)
+  status     String?
+  
+  employee   Employee? @relation(fields: [employeeId], references: [id], onDelete: SetNull)
+
+  @@map("project")
+}
+
+model Rank {
+  eid    Int @id
+  points Int @default(0)
+  
+  employee Employee @relation(fields: [eid], references: [id], onDelete: Cascade)
+  
+  @@map("rank")
+}
+
+model Event {
+  id          Int      @id @default(autoincrement())
+  title       String
+  date        DateTime
+  type        String   // 'holiday', 'meeting'
+  description String?
+  createdAt   DateTime @default(now())
+  
+  @@map("events")
+}
+
+model Announcement {
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(200)
+  content     String    @db.Text
+  priority    String    @default("normal") @db.VarChar(20) // normal, important, urgent
+  createdAt   DateTime  @default(now())
+  expiresAt   DateTime?
+  createdBy   String    @db.VarChar(100)
+
+  @@map("announcement")
+}
+
+model Attendance {
+  id          Int       @id @default(autoincrement())
+  employeeId  Int
+  date        DateTime  @db.Date
+  clockIn     DateTime?
+  clockOut    DateTime?
+  status      String    @default("present") @db.VarChar(20) // present, absent, late, half-day
+  notes       String?   @db.VarChar(255)
+
+  employee    Employee  @relation(fields: [employeeId], references: [id], onDelete: Cascade)
+
+  @@unique([employeeId, date])
+  @@map("attendance")
+}
+
