@@ -2,8 +2,6 @@
 
 A comprehensive, full-stack Employee Management System designed involves automating HR processes, tracking attendance, managing projects, and streamlining admin workflows.
 
-![Dashboard Preview](docs/dashboard-preview.png)
-
 ## 🚀 Features
 
 - **Role-Based Access Control (RBAC)**: Secure separation between Admin and Employee portals.
