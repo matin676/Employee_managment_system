@@ -1,0 +1,78 @@
+<div class="page-container">
+  <main class="form-wrapper">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">Apply for Leave</h2>
+        <p class="welcome-text">Submit your request for time-off for review</p>
+      </div>
+      <a routerLink="/leaves" class="md3-btn text-btn back-link">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <span>Back to History</span>
+      </a>
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    <section class="md3-card form-section">
+      <form [formGroup]="leaveForm" (ngSubmit)="onSubmit()" class="leave-form">
+        <div class="form-grid">
+          <!-- Leave Type -->
+          <div class="md3-field full-width">
+            <label for="leaveType" class="field-label">Type of Leave</label>
+            <select id="leaveType" formControlName="leaveType" class="field-input select-input">
+              <option value="">Select leave type</option>
+              @for (type of leaveTypes; track type) {
+                <option [value]="type">{{ type }}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Date Range -->
+          <div class="md3-field">
+            <label for="startDate" class="field-label">Start Date</label>
+            <input type="date" id="startDate" formControlName="startDate" class="field-input" />
+          </div>
+
+          <div class="md3-field">
+            <label for="endDate" class="field-label">End Date</label>
+            <input type="date" id="endDate" formControlName="endDate" class="field-input" />
+          </div>
+
+          <!-- Reason -->
+          <div class="md3-field full-width">
+            <label for="reason" class="field-label">Reason for Leave</label>
+            <textarea
+              id="reason"
+              formControlName="reason"
+              rows="4"
+              placeholder="Tell us why you need this time off..."
+              class="field-input textarea-input"
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="form-actions">
+          <button type="button" routerLink="/leaves" class="md3-btn text-btn">Cancel</button>
+          <button
+            type="submit"
+            [disabled]="leaveForm.invalid || loading()"
+            class="md3-btn primary-btn submit-btn"
+          >
+            @if (loading()) {
+              <span class="material-symbols-outlined spin-anim icon">sync</span>
+            } @else {
+              <span class="material-symbols-outlined icon">send</span>
+            }
+            <span>Submit Request</span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>

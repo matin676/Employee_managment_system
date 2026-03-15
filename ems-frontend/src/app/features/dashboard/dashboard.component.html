@@ -1,0 +1,59 @@
+<div class="page-container">
+  <main class="page-main-block">
+    <app-dashboard-header 
+      [title]="dashboardTitle()" 
+      [userName]="authService.user()?.firstName || 'Valued Member'"
+      [subtitle]="dashboardSubtitle()"
+      [currentTime]="currentTime()">
+    </app-dashboard-header>
+
+    @if (authService.isAdmin()) {
+      <div class="admin-announcement-wrapper">
+        <app-admin-announcement></app-admin-announcement>
+      </div>
+    }
+
+    <div class="dashboard-grid">
+      <div class="main-content-column">
+        <section class="st-section">
+          <div class="section-header">
+            <h3 class="section-title">Key Performance Indicators</h3>
+          </div>
+          
+          @if (loadingStats()) {
+            <div class="stats-loading-grid">
+              @for (i of [1, 2, 3, 4]; track i) {
+                <app-skeleton-card class="stat-card-skeleton"></app-skeleton-card>
+              }
+            </div>
+          } @else {
+            <app-stats-grid [stats]="stats()"></app-stats-grid>
+          }
+        </section>
+
+        <app-pulse-analytics></app-pulse-analytics>
+
+        <app-quick-actions [actions]="quickActions()"></app-quick-actions>
+      </div>
+
+      <div class="sidebar-column">
+        @if (!authService.isAdmin()) {
+          <app-clock-widget 
+            [isClockedIn]="isClockedIn()" 
+            [liveClock]="liveClock()" 
+            [loading]="loading()"
+            (onToggle)="toggleClock()">
+          </app-clock-widget>
+        }
+
+        <div class="sticky-sidebar">
+          <div class="sidebar-section-header">
+            <div class="status-dot sm"></div>
+            <h3 class="section-title">Broadcast Feed</h3>
+          </div>
+          <app-announcement-feed></app-announcement-feed>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

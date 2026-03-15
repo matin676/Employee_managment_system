@@ -1,0 +1,153 @@
+.md3-top-app-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px; /* Taller, premium header */
+  padding: 0 32px 0 16px; /* Extra padding on right to align with layout */
+  background-color: transparent; /* Makes the header feel like part of the canvas */
+  color: var(--md-sys-color-on-surface);
+  /* Remove shadow completely or use extreme subtle blur */
+  border-bottom: none;
+  box-shadow: none;
+  z-index: 30;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* Keep the shadow if they scroll down the page, handled via TS ideally, but this is base */
+.md3-top-app-bar.scrolled {
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.top-bar-start,
+.top-bar-end {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Increased gap */
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition: all 250ms cubic-bezier(0.2, 0, 0, 1);
+  position: relative;
+}
+
+.icon-btn:hover {
+  background-color: rgba(31, 31, 31, 0.06); /* Soft subtle interaction */
+  color: var(--md-sys-color-on-surface);
+  transform: scale(1.05); /* Slight bounce */
+}
+
+.icon-btn:active {
+  transform: scale(0.95);
+}
+
+.page-title {
+  font-family: 'Outfit', var(--md-sys-typescale-font-family);
+  font-size: 26px; /* Larger title */
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 0;
+  margin-left: 12px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--md-sys-color-surface-container); /* Crisper search */
+  border: 1px solid transparent;
+  border-radius: 28px; /* Slightly more pill shaped */
+  height: 52px; /* Taller input */
+  padding: 0 20px;
+  margin-right: 16px;
+  width: 360px; /* Wider */
+  transition: all 300ms cubic-bezier(0.2, 0, 0, 1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02); /* Very subtle elevation off the flat canvas */
+}
+
+.search-bar:hover {
+  background-color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.search-bar:focus-within {
+  background-color: #ffffff;
+  border-color: var(--md-sys-color-primary);
+  box-shadow: 0 4px 20px rgba(11, 87, 208, 0.08); /* Glow effect on focus */
+  width: 380px; /* Expands on focus */
+}
+
+.search-icon {
+  color: var(--md-sys-color-on-surface-variant);
+  margin-right: 12px;
+  font-size: 22px;
+  transition: color 200ms ease;
+}
+
+.search-bar:focus-within .search-icon {
+  color: var(--md-sys-color-primary); /* Icon turns blue on focus */
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: 15px;
+  color: var(--md-sys-color-on-surface);
+  width: 100%;
+}
+
+.search-input::placeholder {
+  color: #8c9096; /* Lighter placeholder for premium contrast */
+}
+
+.badge {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 10px;
+  height: 10px;
+  background-color: var(--md-sys-color-error);
+  border-radius: 50%;
+  border: 2px solid var(--md-sys-color-surface-variant); /* Matches background */
+  box-shadow: 0 2px 4px rgba(179, 38, 30, 0.4); /* Glow on the badge */
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .search-bar {
+    width: 240px;
+  }
+}
+
+@media (max-width: 768px) {
+  .md3-top-app-bar {
+    padding: 0 16px; /* Reset padding for mobile */
+    height: 64px;
+    background-color: var(--md-sys-color-surface); /* Solid on mobile for readability */
+    box-shadow: var(--md-sys-elevation-1);
+  }
+
+  .search-bar {
+    display: none; /* Hide full search bar on mobile */
+  }
+
+  .page-title {
+    font-size: 20px;
+    margin-left: 4px;
+  }
+}

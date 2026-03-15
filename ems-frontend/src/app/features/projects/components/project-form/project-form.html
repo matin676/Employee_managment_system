@@ -1,0 +1,107 @@
+<div class="page-container">
+  <main class="form-wrapper">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">
+          {{ isEditMode() ? 'Edit Project' : 'New Project' }}
+        </h2>
+        <p class="welcome-text">
+          {{
+            isEditMode()
+              ? 'Update project details and status'
+              : 'Define a new project and assign it'
+          }}
+        </p>
+      </div>
+      <a routerLink="/projects" class="md3-btn text-btn back-link">
+        <span class="material-symbols-outlined">arrow_back</span>
+        <span>Back to List</span>
+      </a>
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    <section class="md3-card form-section">
+      <form [formGroup]="projectForm" (ngSubmit)="onSubmit()" class="project-form">
+        <div class="form-grid">
+          <!-- Project Name -->
+          <div class="md3-field full-width">
+            <label for="name" class="field-label">Project Name</label>
+            <input
+              type="text"
+              id="name"
+              formControlName="name"
+              placeholder="e.g., Enterprise Refactoring"
+              class="field-input"
+            />
+          </div>
+
+          <!-- Description -->
+          <div class="md3-field full-width">
+            <label for="description" class="field-label">Description</label>
+            <textarea
+              id="description"
+              formControlName="description"
+              rows="4"
+              placeholder="Describe the project goals, scope, and key deliverables..."
+              class="field-input textarea-input"
+            ></textarea>
+          </div>
+
+          <!-- Assign To -->
+          @if (employees().length > 0) {
+            <div class="md3-field">
+              <label for="assignedToId" class="field-label">Assign To</label>
+              <select
+                id="assignedToId"
+                formControlName="assignedToId"
+                class="field-input select-input"
+              >
+                <option value="">Unassigned</option>
+                @for (emp of employees(); track emp.id) {
+                  <option [value]="emp.id">{{ emp.firstName }} {{ emp.lastName }}</option>
+                }
+              </select>
+            </div>
+          }
+
+          <!-- Status -->
+          @if (isEditMode()) {
+            <div class="md3-field">
+              <label for="status" class="field-label">Project Status</label>
+              <select id="status" formControlName="status" class="field-input select-input">
+                <option value="ASSIGNED">Assigned</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="SUBMITTED">Submitted</option>
+                <option value="COMPLETED">Completed</option>
+                <option value="GRADED">Graded</option>
+              </select>
+            </div>
+          }
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="form-actions">
+          <button type="button" routerLink="/projects" class="md3-btn text-btn">Cancel</button>
+          <button
+            type="submit"
+            [disabled]="projectForm.invalid || loading()"
+            class="md3-btn primary-btn submit-btn"
+          >
+            @if (loading()) {
+              <span class="material-symbols-outlined spin-anim icon">sync</span>
+            } @else {
+              <span class="material-symbols-outlined icon">save</span>
+            }
+            <span>{{ isEditMode() ? 'Update Project' : 'Create Project' }}</span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>

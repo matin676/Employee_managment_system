@@ -1,0 +1,40 @@
+<app-card title="Announcements" class="announcement-feed-card h-full">
+  <div class="feed-container">
+    @if (loading()) {
+      @for (i of [1, 2, 3]; track i) {
+        <div class="announcement-item skeleton">
+          <app-skeleton width="60%" height="1.2rem"></app-skeleton>
+          <app-skeleton width="90%" height="2.5rem"></app-skeleton>
+          <app-skeleton width="30%" height="0.8rem"></app-skeleton>
+        </div>
+      }
+    } @else if (announcements().length === 0) {
+      <div class="empty-state">
+        <span class="material-symbols-outlined empty-icon">campaign</span>
+        <p class="empty-text">No active announcements</p>
+      </div>
+    } @else {
+      @for (item of announcements(); track item.id) {
+        <div class="announcement-item" [ngClass]="getPriorityClasses(item.priority)">
+          <div class="item-header">
+            <h4 class="item-title">{{ item.title }}</h4>
+            <app-badge [type]="getPriorityBadgeType(item.priority)">{{ item.priority }}</app-badge>
+          </div>
+
+          <p class="item-content">{{ item.content }}</p>
+
+          <div class="item-footer">
+            <div class="date-info">
+              <span class="material-symbols-outlined date-icon">event</span>
+              <span>{{ item.createdAt | date: 'mediumDate' }}</span>
+            </div>
+
+            @if (item.expiresAt) {
+              <span class="expires-badge"> Expires: {{ item.expiresAt | date: 'shortDate' }} </span>
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+</app-card>

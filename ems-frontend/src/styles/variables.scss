@@ -1,0 +1,60 @@
+/* MD3 Design Tokens - Light Theme */
+
+:root {
+  /* Surface Colors */
+  --md-sys-color-primary: #0b57d0;
+  --md-sys-color-primary-rgb: 11, 87, 208;
+  --md-sys-color-on-primary: #ffffff;
+  --md-sys-color-primary-container: #d3e3fd;
+  --md-sys-color-on-primary-container: #041e49;
+
+  --md-sys-color-secondary: #5a5e71;
+  --md-sys-color-on-secondary: #ffffff;
+  --md-sys-color-secondary-container: #dee1f9;
+  --md-sys-color-on-secondary-container: #171b2c;
+
+  --md-sys-color-tertiary: #7d5260;
+  --md-sys-color-on-tertiary: #ffffff;
+  --md-sys-color-tertiary-container: #ffd8e4;
+  --md-sys-color-on-tertiary-container: #31111d;
+
+  --md-sys-color-error: #ba1a1a;
+  --md-sys-color-error-rgb: 186, 26, 26;
+  --md-sys-color-on-error: #ffffff;
+  --md-sys-color-error-container: #ffdad6;
+  --md-sys-color-on-error-container: #410002;
+
+  --md-sys-color-warning: #8d5000;
+  --md-sys-color-warning-rgb: 141, 80, 0;
+  --md-sys-color-warning-container: #ffe08d;
+  --md-sys-color-on-warning-container: #2d1600;
+
+  --md-sys-color-success: #146c2e;
+  --md-sys-color-success-rgb: 20, 108, 46;
+  --md-sys-color-success-container: #c4eece;
+  --md-sys-color-on-success-container: #00210b;
+
+  /* Typography Scale */
+  --md-sys-typescale-display-large: 400 57px/64px 'Outfit', sans-serif;
+  --md-sys-typescale-headline-large: 400 32px/40px 'Outfit', sans-serif;
+  --md-sys-typescale-title-large: 400 22px/28px 'Outfit', sans-serif;
+  --md-sys-typescale-body-large: 400 16px/24px 'Inter', sans-serif;
+  --md-sys-typescale-label-large: 500 14px/20px 'Inter', sans-serif;
+
+  /* Shaping & Elevation */
+  --md-sys-shape-corner-extra-small: 4px;
+  --md-sys-shape-corner-small: 8px;
+  --md-sys-shape-corner-medium: 12px;
+  --md-sys-shape-corner-large: 16px;
+  --md-sys-shape-corner-extra-large: 28px;
+  --md-sys-shape-corner-full: 9999px;
+
+  --md-sys-elevation-1: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-2: 0px 2px 6px 2px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.3);
+  --md-sys-elevation-hover: 0px 4px 8px 3px rgba(0, 0, 0, 0.15), 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+  
+  /* Transitions */
+  --md-sys-motion-duration-short: 200ms;
+  --md-sys-motion-duration-medium: 400ms;
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
+}

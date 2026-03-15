@@ -1,0 +1,150 @@
+:host {
+  display: block;
+}
+
+.employee-card {
+  background-color: var(--md-sys-color-surface-container);
+  border-radius: var(--md-sys-shape-corner-large);
+  box-shadow: var(--md-sys-elevation-1);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition:
+    transform 0.25s cubic-bezier(0.2, 0, 0, 1),
+    box-shadow 0.25s cubic-bezier(0.2, 0, 0, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.employee-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--md-sys-elevation-hover);
+}
+
+.employee-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.employee-card__avatar-container {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--md-sys-color-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.employee-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-card__name {
+  margin: 0;
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  line-height: 24px;
+}
+
+.employee-card__role {
+  margin: 4px 0 0;
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface-variant);
+  line-height: 20px;
+}
+
+.employee-card__divider {
+  height: 1px;
+  background-color: var(--md-sys-color-outline-variant);
+  border: none;
+  margin: 8px 0;
+}
+
+.employee-card__details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.employee-card__detail-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: 14px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.employee-card__detail-item .material-symbols-outlined {
+  font-size: 20px;
+  color: var(--md-sys-color-primary);
+}
+
+.employee-card__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.employee-card__status {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-family: var(--md-sys-typescale-font-family);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.employee-card__status--active {
+  background-color: var(--md-sys-color-success-container);
+  color: var(--md-sys-color-on-success-container);
+}
+
+.employee-card__status--inactive {
+  background-color: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
+}
+
+.employee-card__action-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.employee-card__action-button:hover {
+  background-color: var(--md-sys-color-outline-variant);
+  color: var(--md-sys-color-on-surface);
+}
+
+.employee-card__action-button .material-symbols-outlined {
+  font-size: 20px;
+}

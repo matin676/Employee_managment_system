@@ -1,0 +1,47 @@
+<div class="login-container">
+  <div class="login-card md3-card">
+    <div class="login-header">
+      <div class="brand-logo">
+        <span class="material-symbols-outlined">work</span>
+      </div>
+      <h1 class="brand-name">Gravity EMS</h1>
+      <p class="brand-tagline">Sign in to your account</p>
+    </div>
+
+    @if (error()) {
+      <div class="error-banner">
+        <span class="material-symbols-outlined icon">error</span>
+        <span>{{ error() }}</span>
+      </div>
+    }
+
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+      <app-ui-input
+        label="Email address"
+        type="email"
+        [control]="getControl('email')"
+        placeholder="name@company.com"
+        icon="mail"
+      ></app-ui-input>
+
+      <app-ui-input
+        label="Password"
+        type="password"
+        [control]="getControl('password')"
+        placeholder="••••••••"
+        icon="lock"
+      ></app-ui-input>
+
+      <div class="form-actions">
+        <app-ui-button
+          type="submit"
+          class="full-width"
+          [disabled]="loginForm.invalid || authService.loading()"
+          [loading]="authService.loading()"
+        >
+          Sign In
+        </app-ui-button>
+      </div>
+    </form>
+  </div>
+</div>

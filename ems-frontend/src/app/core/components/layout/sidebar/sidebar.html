@@ -1,0 +1,45 @@
+<aside class="md3-sidebar">
+  <!-- Logo Area -->
+  <div class="sidebar-header" [class.collapsed]="!layoutService.isSidebarOpen()">
+    <div class="logo-icon">EMS</div>
+    @if (layoutService.isSidebarOpen()) {
+      <div class="logo-text">Gravity EMS</div>
+    }
+  </div>
+
+  <!-- Navigation -->
+  <nav class="sidebar-nav" [class.collapsed]="!layoutService.isSidebarOpen()">
+    @for (item of menuItems; track item.label) {
+      <a
+        [routerLink]="item.route"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+        (click)="closeSidebar()"
+        class="nav-item"
+        [title]="!layoutService.isSidebarOpen() ? item.label : ''"
+      >
+        <div class="nav-icon-container">
+          <span class="material-symbols-outlined nav-icon">{{ item.icon }}</span>
+        </div>
+        @if (layoutService.isSidebarOpen()) {
+          <span class="nav-label">{{ item.label }}</span>
+        }
+      </a>
+    }
+  </nav>
+
+  <!-- User Profile / Footer -->
+  <div class="sidebar-footer" [class.collapsed]="!layoutService.isSidebarOpen()">
+    <div class="user-profile">
+      <div class="avatar">
+        {{ (authService.user()?.firstName || 'User')[0] }}{{ (authService.user()?.lastName || '')[0] }}
+      </div>
+      @if (layoutService.isSidebarOpen()) {
+        <div class="user-info">
+          <div class="user-name">{{ authService.user()?.firstName }} {{ authService.user()?.lastName }}</div>
+          <div class="user-role">{{ authService.user()?.role }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</aside>

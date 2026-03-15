@@ -1,0 +1,17 @@
+<div class="app-layout">
+  <!-- Sidebar -->
+  <app-sidebar class="app-sidebar" [class.collapsed]="!isSidebarOpen()"></app-sidebar>
+
+  <!-- Mobile Sidebar Overlay -->
+  @if (isSidebarOpen()) {
+    <div class="sidebar-overlay md-hidden" (click)="layoutService.closeSidebar()"></div>
+  }
+
+  <!-- Main Content Area -->
+  <div class="app-main-content">
+    <app-navbar class="app-navbar"></app-navbar>
+    <main class="app-page-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

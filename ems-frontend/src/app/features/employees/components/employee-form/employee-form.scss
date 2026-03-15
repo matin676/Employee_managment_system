@@ -1,0 +1,216 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.page-container {
+  padding: 32px 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+
+  .header-text-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .page-title {
+    font: var(--md-sys-typescale-display-small);
+    font-weight: 700;
+    color: var(--md-sys-color-on-surface);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .welcome-text {
+    font: var(--md-sys-typescale-body-large);
+    color: var(--md-sys-color-on-surface-variant);
+    margin: 0;
+  }
+}
+
+.md3-icon-btn.back-btn {
+  background-color: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface-variant);
+  border: 1px solid var(--md-sys-color-surface-variant);
+  box-shadow: var(--md-sys-elevation-1);
+  
+  &:hover {
+    background-color: var(--md-sys-color-surface-variant);
+    color: var(--md-sys-color-on-surface);
+  }
+}
+
+/* .md3-alert is now globally defined in styles.css */
+
+.employee-form-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-section {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  .icon-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--md-sys-shape-corner-large);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .material-symbols-outlined {
+      font-size: 24px;
+    }
+
+    &.primary-tone {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+    }
+
+    &.secondary-tone {
+      background-color: var(--md-sys-color-tertiary-container);
+      color: var(--md-sys-color-on-tertiary-container);
+    }
+
+    &.tertiary-tone {
+      background-color: var(--md-sys-color-secondary-container);
+      color: var(--md-sys-color-on-secondary-container);
+    }
+  }
+
+  .section-title {
+    font: var(--md-sys-typescale-title-large);
+    font-weight: 600;
+    color: var(--md-sys-color-on-surface);
+    margin: 0;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+
+  @media (min-width: 768px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.md3-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+/* .field-label and .field-input are now globally defined in styles.css */
+
+.input-with-prefix {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .prefix {
+    position: absolute;
+    left: 16px;
+    color: var(--md-sys-color-on-surface-variant);
+    font-weight: 600;
+    pointer-events: none;
+  }
+
+  .field-input {
+    padding-left: 36px;
+  }
+}
+
+.input-with-suffix {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .field-input {
+    padding-right: 48px;
+  }
+
+  .suffix-btn {
+    position: absolute;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--md-sys-color-on-surface-variant);
+    cursor: pointer;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--md-sys-color-surface-variant);
+      color: var(--md-sys-color-on-surface);
+    }
+    
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-top: 24px;
+}
+
+.md3-btn {
+  &.text-btn {
+    &.back-link {
+      height: 40px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  .material-symbols-outlined {
+    font-size: 20px;
+  }
+}
+
+.spin-anim {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

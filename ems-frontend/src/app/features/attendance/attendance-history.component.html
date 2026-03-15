@@ -1,0 +1,89 @@
+<div class="page-container">
+  <main class="main-area">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">Attendance Logs</h2>
+        <p class="welcome-text">
+          {{
+            isAdmin()
+              ? 'Review organization-wide attendance and punctuality'
+              : 'Track your daily clock-in and clock-out history'
+          }}
+        </p>
+      </div>
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    <div class="md3-card table-card">
+      @if (loading()) {
+        <app-skeleton-table></app-skeleton-table>
+      } @else if (attendance().length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon-container">
+            <span class="material-symbols-outlined">history</span>
+          </div>
+          <h3 class="empty-title">No records found</h3>
+          <p class="empty-text">
+            Attendance logs will appear here once employees start clocking in.
+          </p>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="md3-table">
+            <thead>
+              <tr>
+                <th>Date</th>
+                @if (isAdmin()) {
+                  <th>Employee</th>
+                }
+                <th class="text-center">Status</th>
+                <th>Clock In</th>
+                <th>Clock Out</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (record of attendance(); track record.id) {
+                <tr>
+                  <td class="date-cell">
+                    {{ record.date | date: 'EE, MMM d, y' }}
+                  </td>
+                  @if (isAdmin()) {
+                    <td>
+                      <div class="employee-cell">
+                        <div class="avatar-small">
+                          {{ record.employeeName.charAt(0) || 'U' }}
+                        </div>
+                        <span class="employee-name">{{ record.employeeName }}</span>
+                      </div>
+                    </td>
+                  }
+                  <td class="text-center">
+                    <app-badge [type]="getBadgeType(record)">
+                      {{ getStatusLabel(record) }}
+                    </app-badge>
+                  </td>
+                  <td>
+                    <span class="time-primary">{{ record.clockIn | date: 'shortTime' }}</span>
+                  </td>
+                  <td>
+                    @if (record.clockOut) {
+                      <span class="time-secondary">{{ record.clockOut | date: 'shortTime' }}</span>
+                    } @else {
+                      <span class="active-shift">Active Shift...</span>
+                    }
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  </main>
+</div>

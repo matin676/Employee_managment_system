@@ -1,0 +1,98 @@
+<div class="page-container">
+  <main class="content-wrapper">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">
+          {{ isAdmin() ? 'Payroll Management' : 'Pay History' }}
+        </h2>
+        <p class="welcome-text">
+          {{
+            isAdmin()
+              ? "Monitor and manage organization's compensation records"
+              : 'View your earnings and payment history'
+          }}
+        </p>
+      </div>
+
+      @if (isAdmin()) {
+        <a routerLink="/salaries/issue" class="md3-btn primary-btn">
+          <span class="material-symbols-outlined icon">payments</span>
+          <span>Issue Salary</span>
+        </a>
+      }
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    <section class="md3-card table-section">
+      @if (loading()) {
+        <app-skeleton-table></app-skeleton-table>
+      } @else if (salaries().length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon-container">
+            <span class="material-symbols-outlined empty-icon">account_balance_wallet</span>
+          </div>
+          <h3 class="empty-title">No payment records</h3>
+          <p class="empty-description">
+            Compensation records will appear here once salaries are issued and processed.
+          </p>
+        </div>
+      } @else {
+        <div class="table-container">
+          <table class="md3-table">
+            <thead>
+              <tr>
+                @if (isAdmin()) {
+                  <th>Employee</th>
+                }
+                <th>Period</th>
+                <th>Payment Date</th>
+                <th class="align-right">Base salary</th>
+                <th class="align-right">Allowances</th>
+                <th class="align-right text-error">Deductions</th>
+                <th class="align-right">Total Net</th>
+                <th class="align-center">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (salary of salaries(); track salary.id) {
+                <tr class="table-row">
+                  @if (isAdmin()) {
+                    <td>
+                      <div class="employee-cell">
+                        <div class="avatar-sm">
+                          {{ salary.employeeName.charAt(0) }}
+                        </div>
+                        <span class="employee-name">{{ salary.employeeName }}</span>
+                      </div>
+                    </td>
+                  }
+                  <td class="font-medium text-primary">{{ salary.monthYear }}</td>
+                  <td class="text-secondary">{{ salary.paymentDate | date: 'mediumDate' }}</td>
+                  <td class="align-right font-bold">{{ salary.baseSalary | currency }}</td>
+                  <td class="align-right font-medium text-success">
+                    +{{ salary.bonuses | currency }}
+                  </td>
+                  <td class="align-right font-medium text-error">
+                    -{{ salary.deductions | currency }}
+                  </td>
+                  <td class="align-right font-bold text-primary">
+                    <span class="md3-badge primary">{{ salary.totalSalary | currency }}</span>
+                  </td>
+                  <td class="align-center">
+                    <app-badge [type]="getBadgeType(salary.status)">{{ salary.status }}</app-badge>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </section>
+  </main>
+</div>

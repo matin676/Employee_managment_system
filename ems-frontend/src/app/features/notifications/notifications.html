@@ -1,0 +1,62 @@
+<div class="page-container">
+  <main class="content-wrapper">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">Notifications</h2>
+        <p class="welcome-text">Stay updated with the latest activity</p>
+      </div>
+    </header>
+
+    <section class="md3-card notifications-section">
+      @if (loading()) {
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p class="loading-text">Fetching updates...</p>
+        </div>
+      } @else if (notifications().length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon-container">
+            <span class="material-symbols-outlined empty-icon">notifications_off</span>
+          </div>
+          <h3 class="empty-title">All caught up!</h3>
+          <p class="empty-description">You have no new notifications at the moment.</p>
+        </div>
+      } @else {
+        <div class="notifications-list">
+          @for (item of notifications(); track item.id) {
+            <div class="notification-item">
+              <div class="notification-icon-wrapper">
+                <div
+                  class="notification-icon"
+                  [ngClass]="{
+                    'is-urgent': item.priority === 'URGENT',
+                    'is-important': item.priority === 'IMPORTANT',
+                    'is-normal': item.priority === 'NORMAL' || !item.priority,
+                  }"
+                >
+                  <span class="material-symbols-outlined">campaign</span>
+                </div>
+              </div>
+
+              <div class="notification-content">
+                <div class="notification-header">
+                  <h4 class="notification-title">{{ item.title }}</h4>
+                  <app-badge [type]="getBadgeType(item.priority)">{{ item.priority }}</app-badge>
+                </div>
+
+                <p class="notification-message">
+                  {{ item.content }}
+                </p>
+
+                <div class="notification-meta">
+                  <span class="material-symbols-outlined meta-icon">access_time</span>
+                  <span class="meta-text">{{ item.createdAt | date: 'medium' }}</span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      }
+    </section>
+  </main>
+</div>

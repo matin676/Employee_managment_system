@@ -1,0 +1,29 @@
+<header class="md3-top-app-bar">
+  <!-- Left Side: Toggle & Title -->
+  <div class="top-bar-start">
+    <button (click)="toggleSidebar()" class="icon-btn menu-toggle" aria-label="Toggle Menu">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
+    <h1 class="page-title">Dashboard</h1>
+  </div>
+
+  <!-- Right Side: Actions -->
+  <div class="top-bar-end">
+    <!-- Search -->
+    <div class="search-bar">
+      <span class="material-symbols-outlined search-icon">search</span>
+      <input type="text" placeholder="Search..." class="search-input" />
+    </div>
+
+    <!-- Notifications -->
+    <button class="icon-btn notification-btn" aria-label="Notifications">
+      <span class="material-symbols-outlined">notifications</span>
+      <span class="badge"></span>
+    </button>
+
+    <!-- Logout -->
+    <button (click)="logout()" class="icon-btn" aria-label="Logout" title="Logout">
+      <span class="material-symbols-outlined" style="color: var(--md-sys-color-error)">logout</span>
+    </button>
+  </div>
+</header>

@@ -1,0 +1,69 @@
+<div class="page-container">
+  <main class="content-wrapper">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">Company Calendar</h2>
+        <p class="welcome-text">Schedules, events, and important dates</p>
+      </div>
+
+      <div class="calendar-nav md3-card">
+        <button (click)="prevMonth()" class="md3-icon-btn" aria-label="Previous month">
+          <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+        <span class="current-month">
+          {{ currentMonth() | date: 'MMMM yyyy' }}
+        </span>
+        <button (click)="nextMonth()" class="md3-icon-btn" aria-label="Next month">
+          <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+      </div>
+    </header>
+
+    @if (loading()) {
+      <app-skeleton-table [columns]="['100%']"></app-skeleton-table>
+    } @else {
+      <section class="md3-card calendar-section">
+        <!-- Days Header -->
+        <div class="days-header">
+          @for (day of weekDays; track day) {
+            <div class="day-name">
+              {{ day }}
+            </div>
+          }
+        </div>
+
+        <!-- Calendar Grid -->
+        <div class="calendar-grid">
+          @for (day of calendarDays(); track day.date) {
+            <div class="calendar-cell" [class.outside-month]="!day.isCurrentMonth">
+              <div class="cell-header">
+                <span
+                  class="date-number"
+                  [class.is-today]="isToday(day.date)"
+                  [class.is-current-month]="day.isCurrentMonth"
+                >
+                  {{ day.date | date: 'd' }}
+                </span>
+              </div>
+
+              <!-- Events List -->
+              <div class="events-list">
+                @for (event of day.events; track event.id) {
+                  <div
+                    class="event-pill"
+                    [style.background-color]="event.color + '15'"
+                    [style.color]="event.color"
+                    [style.border-left-color]="event.color"
+                    [title]="event.title + (event.description ? '\n' + event.description : '')"
+                  >
+                    {{ event.title }}
+                  </div>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  </main>
+</div>

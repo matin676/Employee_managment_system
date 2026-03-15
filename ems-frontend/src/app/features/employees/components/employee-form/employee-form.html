@@ -1,0 +1,193 @@
+<div class="page-container">
+  <div class="form-wrapper">
+    <header class="form-header">
+      <div class="header-text-group">
+        <h2 class="page-title">
+          {{ isEditMode() ? 'Edit Member Profile' : 'Add New Member' }}
+        </h2>
+        <p class="welcome-text">
+          Configure employee details, credentials, and organizational role.
+        </p>
+      </div>
+      <a routerLink="/employees" class="md3-icon-btn back-btn" aria-label="Go back">
+        <span class="material-symbols-outlined">close</span>
+      </a>
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form-layout">
+      <!-- Personal Information Section -->
+      <section class="md3-card form-section">
+        <div class="section-header">
+          <div class="icon-avatar primary-tone">
+            <span class="material-symbols-outlined">person</span>
+          </div>
+          <h3 class="section-title">Personal Information</h3>
+        </div>
+
+        <div class="form-grid">
+          <div class="md3-field">
+            <label class="field-label">First Name</label>
+            <input
+              type="text"
+              formControlName="firstName"
+              class="field-input"
+              placeholder="e.g. John"
+            />
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">Last Name</label>
+            <input
+              type="text"
+              formControlName="lastName"
+              class="field-input"
+              placeholder="e.g. Doe"
+            />
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">Date of Birth</label>
+            <input type="date" formControlName="dateOfBirth" class="field-input" />
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">Gender</label>
+            <select formControlName="gender" class="field-input select-input">
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact & Career Section -->
+      <section class="md3-card form-section">
+        <div class="section-header">
+          <div class="icon-avatar secondary-tone">
+            <span class="material-symbols-outlined">work</span>
+          </div>
+          <h3 class="section-title">Career & Contact</h3>
+        </div>
+
+        <div class="form-grid">
+          <div class="md3-field full-width">
+            <label class="field-label">Email Address</label>
+            <input
+              type="email"
+              formControlName="email"
+              class="field-input"
+              placeholder="john.doe@organization.com"
+              [readonly]="isEditMode()"
+            />
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">Department</label>
+            <select formControlName="department" class="field-input select-input">
+              <option value="">Select Department</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Product">Product</option>
+              <option value="Design">Design</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Sales">Sales</option>
+              <option value="HR">HR</option>
+            </select>
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">Phone Number</label>
+            <input
+              type="tel"
+              formControlName="phone"
+              class="field-input"
+              placeholder="+1 (555) 000-0000"
+            />
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">Qualification</label>
+            <input
+              type="text"
+              formControlName="qualification"
+              class="field-input"
+              placeholder="e.g. Senior Software Engineer"
+            />
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">Base Salary</label>
+            <div class="input-with-prefix">
+              <span class="prefix">$</span>
+              <input type="number" formControlName="salary" class="field-input" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Security & Location Section -->
+      <section class="md3-card form-section">
+        <div class="section-header">
+          <div class="icon-avatar tertiary-tone">
+            <span class="material-symbols-outlined">shield</span>
+          </div>
+          <h3 class="section-title">Security & Location</h3>
+        </div>
+
+        <div class="form-grid">
+          @if (!isEditMode()) {
+            <div class="md3-field">
+              <label class="field-label">Initial Password</label>
+              <div class="input-with-suffix">
+                <input
+                  [type]="showPassword() ? 'text' : 'password'"
+                  formControlName="password"
+                  class="field-input"
+                />
+                <button type="button" class="suffix-btn" (click)="togglePassword()">
+                  <span class="material-symbols-outlined">
+                    {{ showPassword() ? 'visibility_off' : 'visibility' }}
+                  </span>
+                </button>
+              </div>
+            </div>
+          }
+
+          <div class="md3-field" [class.full-width]="isEditMode()">
+            <label class="field-label">Residential Address</label>
+            <textarea
+              formControlName="address"
+              rows="1"
+              class="field-input textarea-input"
+              placeholder="Street, City, Country"
+            ></textarea>
+          </div>
+        </div>
+      </section>
+
+      <div class="form-actions border-top">
+        <button type="button" routerLink="/employees" class="md3-btn text-btn">Cancel</button>
+        <button
+          type="submit"
+          [disabled]="loading() || employeeForm.invalid"
+          class="md3-btn primary-btn"
+        >
+          @if (loading()) {
+            <span class="material-symbols-outlined spin-anim">sync</span>
+          } @else {
+            <span class="material-symbols-outlined">save</span>
+          }
+          <span>{{ isEditMode() ? 'Save Changes' : 'Create Member' }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

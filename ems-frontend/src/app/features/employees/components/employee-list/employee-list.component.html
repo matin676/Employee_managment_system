@@ -1,0 +1,51 @@
+<div class="page-container">
+  <app-employee-search-header
+    [searchQuery]="searchQuery"
+    (searchChange)="onSearchChange($event)"
+  ></app-employee-search-header>
+
+  @if (error()) {
+    <div class="error-banner">
+      <span class="material-symbols-outlined">error</span>
+      <p>{{ error() }}</p>
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="skeleton-loader"></div>
+      <p>Loading member data...</p>
+    </div>
+  } @else if (employees().length === 0) {
+    <div class="empty-state">
+      <span class="material-symbols-outlined empty-icon">group_off</span>
+      <h3>No members found</h3>
+      <p>Try adjusting your search query or add a new team member.</p>
+    </div>
+  } @else {
+    <!-- Desktop Table View -->
+    <div class="hidden md:block">
+      <app-employee-table
+        [employees]="employees()"
+        (delete)="deleteEmployee($event)"
+      ></app-employee-table>
+    </div>
+
+    <!-- Mobile Stack View -->
+    <div class="mobile-stack md:hidden">
+      @for (employee of employees(); track employee.id) {
+        <div class="md3-card employee-card p-4">
+          <app-employee-profile-card [employee]="employee"></app-employee-profile-card>
+        </div>
+      }
+    </div>
+
+    <!-- Pagination -->
+    <app-employee-pagination
+      [page]="page()"
+      [totalElements]="totalElements()"
+      [size]="size"
+      (pageChange)="onPageChange($event)"
+    ></app-employee-pagination>
+  }
+</div>

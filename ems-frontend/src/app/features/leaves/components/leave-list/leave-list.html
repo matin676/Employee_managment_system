@@ -1,0 +1,120 @@
+<div class="page-container">
+  <main class="main-area">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">Time Off Requests</h2>
+        <p class="welcome-text">
+          {{
+            authService.isAdmin()
+              ? 'Manage and review team leave applications'
+              : 'View your leave balance and history'
+          }}
+        </p>
+      </div>
+
+      <a routerLink="/leaves/apply" class="md3-btn primary-btn icon-btn">
+        <span class="material-symbols-outlined">add</span>
+        <span>Apply for Leave</span>
+      </a>
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    <div class="md3-card table-card">
+      @if (loading()) {
+        <app-skeleton-table></app-skeleton-table>
+      } @else if (leaves().length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon-container">
+            <span class="material-symbols-outlined">inbox</span>
+          </div>
+          <h3 class="empty-title">No leave requests</h3>
+          <p class="empty-text">
+            Either you haven't applied for any leaves yet, or there are no pending requests to
+            review.
+          </p>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table class="md3-table">
+            <thead>
+              <tr>
+                <th>Employee</th>
+                <th>Type</th>
+                <th>Duration</th>
+                <th class="text-center">Status</th>
+                <th>Reason</th>
+                @if (authService.isAdmin()) {
+                  <th class="text-right">Actions</th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (leave of leaves(); track leave.id) {
+                <tr>
+                  <td>
+                    <div class="employee-cell">
+                      <div class="avatar-small">
+                        {{ leave.employee?.firstName?.charAt(0) || 'U' }}
+                      </div>
+                      <div class="employee-info">
+                        <span class="employee-name">
+                          {{ leave.employee?.firstName }} {{ leave.employee?.lastName }}
+                        </span>
+                        <span class="employee-dept">
+                          {{ leave.employee?.department || 'Member' }}
+                        </span>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="type-cell">{{ leave.leaveType }}</td>
+                  <td>
+                    <div class="duration-primary">{{ leave.startDate }}</div>
+                    <div class="duration-secondary">
+                      until {{ leave.endDate }} ({{ leave.daysCount }} days)
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <app-badge [type]="getBadgeType(leave.status)">{{ leave.status }}</app-badge>
+                  </td>
+                  <td>
+                    <p class="reason-text" [title]="leave.reason">{{ leave.reason }}</p>
+                  </td>
+                  @if (authService.isAdmin()) {
+                    <td class="text-right action-cell">
+                      @if (leave.status === 'PENDING') {
+                        <div class="action-buttons">
+                          <button
+                            (click)="approveLeave(leave)"
+                            class="icon-action-btn approve"
+                            title="Approve"
+                          >
+                            <span class="material-symbols-outlined">check</span>
+                          </button>
+                          <button
+                            (click)="rejectLeave(leave)"
+                            class="icon-action-btn reject"
+                            title="Reject"
+                          >
+                            <span class="material-symbols-outlined">close</span>
+                          </button>
+                        </div>
+                      } @else {
+                        <span class="handled-status">Handled</span>
+                      }
+                    </td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </div>
+  </main>
+</div>

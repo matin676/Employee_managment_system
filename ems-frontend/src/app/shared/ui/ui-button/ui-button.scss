@@ -1,0 +1,24 @@
+@use 'styles/mixins' as mix;
+
+.md3-btn {
+  // Most styles are global, only specific overrides here
+  &.danger-btn {
+    @include mix.md3-button-filled(var(--md-sys-color-error), var(--md-sys-color-on-error));
+  }
+}
+
+.spin-anim {
+  animation: spin 1s linear infinite;
+  font-size: 20px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.md-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

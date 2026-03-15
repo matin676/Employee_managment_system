@@ -1,0 +1,6 @@
+<button [type]="type" [disabled]="disabled || loading" [class]="classes">
+  @if (loading) {
+    <span class="material-symbols-outlined spin-anim">sync</span>
+  }
+  <span class="md-btn-content"><ng-content></ng-content></span>
+</button>

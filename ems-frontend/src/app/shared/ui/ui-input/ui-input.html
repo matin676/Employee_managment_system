@@ -1,0 +1,35 @@
+<div class="md3-field">
+  @if (label) {
+    <label class="field-label">{{ label }}</label>
+  }
+
+  <div class="field-container">
+    @if (icon) {
+      <div class="icon-container">
+        <span class="material-symbols-outlined field-icon">{{ icon }}</span>
+      </div>
+    }
+
+    <input
+      [type]="type"
+      [formControl]="control"
+      [placeholder]="placeholder"
+      [class.has-icon]="icon"
+      class="field-input"
+    />
+  </div>
+
+  @if (control.invalid && (control.touched || control.dirty)) {
+    <div class="field-error">
+      @if (control.errors?.['required']) {
+        This field is required
+      } @else if (control.errors?.['email']) {
+        Invalid email address
+      } @else if (control.errors?.['minlength']) {
+        Must be at least {{ control.errors?.['minlength'].requiredLength }} characters
+      } @else {
+        {{ errorDetails || 'Invalid value' }}
+      }
+    </div>
+  }
+</div>

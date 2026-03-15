@@ -1,0 +1,102 @@
+.md3-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 24px;
+  border-radius: 20px;
+  font: var(--md-sys-typescale-label-large, 500 14px/20px var(--md-sys-typescale-font-family));
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  transition: all var(--md-sys-motion-duration-short, 0.2s)
+    var(--md-sys-motion-easing-standard, cubic-bezier(0.2, 0, 0, 1));
+  border: none;
+  box-sizing: border-box;
+}
+
+.md3-btn:disabled,
+.md3-btn.loading {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.md3-btn:focus-visible {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+.md3-btn.primary-btn {
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.md3-btn.primary-btn:hover:not(:disabled) {
+  box-shadow: var(--md-sys-elevation-2);
+  transform: translateY(-1px);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+}
+
+.md3-btn.secondary-btn {
+  background-color: var(--md-sys-color-secondary-container, #e8def8);
+  color: var(--md-sys-color-on-secondary-container, #1d192b);
+}
+
+.md3-btn.secondary-btn:hover:not(:disabled) {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08));
+}
+
+.md3-btn.danger-btn {
+  background-color: var(--md-sys-color-error);
+  color: var(--md-sys-color-on-error);
+  box-shadow: var(--md-sys-elevation-1);
+}
+
+.md3-btn.danger-btn:hover:not(:disabled) {
+  box-shadow: var(--md-sys-elevation-2);
+  transform: translateY(-1px);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+}
+
+.md3-btn.text-btn {
+  background-color: transparent;
+  color: var(--md-sys-color-primary);
+  padding: 0 12px;
+}
+
+.md3-btn.text-btn:hover:not(:disabled) {
+  background-color: var(--md-sys-color-surface-variant);
+}
+
+.spinner-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  margin-left: -4px;
+  animation: md3-spin 1s linear infinite;
+  color: inherit;
+}
+
+.spinner-circle {
+  opacity: 0.25;
+}
+
+.spinner-path {
+  opacity: 0.75;
+}
+
+@keyframes md3-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.md-btn-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}

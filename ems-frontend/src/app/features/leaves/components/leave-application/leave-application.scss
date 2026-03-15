@@ -1,0 +1,52 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+/* Page layout inherited from global styles.css */
+
+
+/* .md3-alert is globally defined in styles.css */
+
+.md3-card.form-section {
+  padding: 32px;
+}
+
+.leave-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 24px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.md3-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  &.full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* specialized inputs are now managed globally in styles.css */
+
+/* specialized inputs are now managed globally in styles.css */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--md-sys-color-surface-variant);
+}
+
+/* .md3-btn and animations are globally defined in styles.css */

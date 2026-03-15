@@ -1,0 +1,119 @@
+<div class="page-container">
+  <main class="content-wrapper">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">Issue Salary</h2>
+        <p class="welcome-text">Process compensation for your team members</p>
+      </div>
+      <a routerLink="/salaries" class="back-link">
+        <span class="material-symbols-outlined">arrow_back</span>
+        Back to Records
+      </a>
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    <section class="md3-card form-section">
+      <form [formGroup]="form" (ngSubmit)="$event.preventDefault(); onSubmit()" class="md3-form">
+        <div class="form-content">
+          <!-- Employee Selection -->
+          <div class="form-field">
+            <label for="employeeId" class="field-label">Employee</label>
+            <div class="select-container">
+              <select id="employeeId" formControlName="employeeId" class="md3-select">
+                <option value="">Select an employee</option>
+                @for (emp of employees(); track emp.id) {
+                  <option [value]="emp.id">
+                    {{ emp.firstName }} {{ emp.lastName }} ({{ emp.department }})
+                  </option>
+                }
+              </select>
+              <span class="material-symbols-outlined select-icon">expand_more</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Payment Date -->
+            <div class="form-field">
+              <label for="paymentDate" class="field-label">Payment Date</label>
+              <input type="date" id="paymentDate" formControlName="paymentDate" class="md3-input" />
+            </div>
+
+            <!-- Base Salary -->
+            <div class="form-field">
+              <label for="baseSalary" class="field-label">Base Salary</label>
+              <div class="input-with-prefix">
+                <span class="prefix">$</span>
+                <input
+                  type="number"
+                  id="baseSalary"
+                  formControlName="baseSalary"
+                  placeholder="0.00"
+                  class="md3-input"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Bonuses -->
+            <div class="form-field">
+              <label for="bonuses" class="field-label">Allowances / Bonuses</label>
+              <div class="input-with-prefix">
+                <span class="prefix text-success">$</span>
+                <input
+                  type="number"
+                  id="bonuses"
+                  formControlName="bonuses"
+                  placeholder="0.00"
+                  class="md3-input"
+                />
+              </div>
+            </div>
+
+            <!-- Deductions -->
+            <div class="form-field">
+              <label for="deductions" class="field-label text-error">Deductions</label>
+              <div class="input-with-prefix">
+                <span class="prefix text-error">$</span>
+                <input
+                  type="number"
+                  id="deductions"
+                  formControlName="deductions"
+                  placeholder="0.00"
+                  class="md3-input"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Total Calculation -->
+          <div class="total-calculation-box">
+            <span class="total-label">Calculated Net Total</span>
+            <span class="total-value">{{ calculateTotal() | currency }}</span>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" routerLink="/salaries" class="md3-btn outlined-btn">Cancel</button>
+          <button
+            type="submit"
+            [disabled]="form.invalid || submitting()"
+            class="md3-btn primary-btn"
+          >
+            @if (submitting()) {
+              <span class="spinner"></span>
+            }
+            <span>Issue Salary</span>
+            <span class="material-symbols-outlined icon">send</span>
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
+</div>

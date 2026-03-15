@@ -1,79 +1,102 @@
-# DDO Bharuch | Employee Management System (EMS)
+# Employee Management System (EMS)
 
-A modern, high-performance Employee Management System designed for the **District Development Office (DDO), Bharuch**. This platform streamlines administration, attendance tracking, and payroll management with a premium user experience.
+A comprehensive, full-stack Employee Management System designed involves automating HR processes, tracking attendance, managing projects, and streamlining admin workflows.
+
+![Dashboard Preview](docs/dashboard-preview.png)
 
 ## 🚀 Features
 
-- **Robust Attendance Tracking**: Seamless clock-in/out with automated status (Late, Present, Half-day) and server-side date normalization.
-- **Dynamic Post Management**: Real-time announcements for organization-wide communication.
-- **Leave Management**: Employee request portal and Admin approval workflow with instant status notifications.
-- **Payroll & Salaries**: Automated salary processing and historical payroll records.
-- **Role-Based Access Control (RBAC)**: secure data isolation for Admin and Employee roles.
-- **Modern UI/UX**: Built with a sleek, dark-themed aesthetic (Glassmorphism), micro-animations, and responsive layouts.
+- **Role-Based Access Control (RBAC)**: Secure separation between Admin and Employee portals.
+- **Dashboard**: Interactive charts, quick actions, and real-time statistics.
+- **Employee Management**: CRUD operations for employee profiles, departments, and roles.
+- **Attendance Tracking**:
+  - Daily Clock In/Out with status tracking (Present, Late, Half-Day).
+  - Admin override capabilities.
+- **Leave Management**:
+  - Employee leave application portal.
+  - Admin approval workflow with historical records.
+- **Project Management**:
+  - Assign projects to employees with due dates and priorities.
+  - Status tracking (In Progress, Completed).
+- **Payroll System**:
+  - Dynamic salary calculation based on attendance and allowances.
+  - Monthly payroll generation and history.
+- **Calendar Integration**:
+  - Visual monthly calendar displaying leaves, holidays, and project deadlines.
+- **Announcements**: Organization-wide notices and updates.
 
 ## 🛠️ Technology Stack
 
-- **Framework**: [Next.js 15+](https://nextjs.org/) (App Router)
-- **Database**: [Prisma ORM](https://www.prisma.io/) with MySQL/PostgreSQL
-- **Styling**: [Tailwind CSS 4.0](https://tailwindcss.com/)
-- **State/Forms**: `react-hook-form`, `zod`, `framer-motion`
-- **Notifications**: `sonner` (Rich Action Toasts)
-- **Authentication**: JWT-based secure sessions with `jose` and `bcryptjs`
+### Frontend
+
+- **Framework**: [Angular 19](https://angular.io/) (Standalone Components, Signals)
+- **Styling**: [Tailwind CSS 3](https://tailwindcss.com/)
+- **Icons**: Heroicons (SVG)
+
+### Backend
+
+- **Framework**: [Spring Boot 3.4](https://spring.io/projects/spring-boot)
+- **Language**: Java 22
+- **Database**: PostgreSQL
+- **ORM**: Hibernate / Spring Data JPA
+- **Security**: Spring Security + JWT Authentication
 
 ## 📦 Getting Started
 
 ### Prerequisites
 
 - Node.js 18+
-- A running database instance
+- JDK 17+
+- Maven 3.8+
+- PostgreSQL or MySQL Database
 
 ### Installation
 
-1. Clone the repository:
+1.  **Clone the repository:**
 
-   ```bash
-   git clone https://github.com/matin676/Employee_managment_system.git
-   cd Employee_managment_system
-   ```
+    ```bash
+    git clone https://github.com/matin676/Employee_managment_system.git
+    cd Employee_managment_system
+    ```
 
-2. Install dependencies:
+2.  **Backend Setup:**
+    - Navigate to `ems-backend`.
+    - Copy `env.properties.example` to `env.properties` and fill in your database and JWT secrets.
+    - Run the application:
+      ```bash
+      mvn spring-boot:run
+      ```
 
-   ```bash
-   npm install
-   ```
-
-3. Configure Environment Variables:
-   Create a `.env` file in the root:
-
-   ```env
-   DATABASE_URL="mysql://user:pass@localhost:3306/ems"
-   JWT_SECRET="your_secure_secret_here"
-   ```
-
-4. Initialize Database:
-
-   ```bash
-   npx prisma db push
-   # Optional: Seed data
-   npm run seed
-   ```
-
-5. Run Development Server:
-
-   ```bash
-   npm run dev
-   ```
+3.  **Frontend Setup:**
+    - Navigate to `ems-frontend`.
+    - Install dependencies:
+      ```bash
+      npm install
+      ```
+    - Run the development server:
+      ```bash
+      npm start
+      ```
+    - Open `http://localhost:4200`.
 
 ## 🏗️ Production Build
 
-To prepare the application for deployment:
+**Frontend:**
 
 ```bash
+cd ems-frontend
 npm run build
-npm start
+# Output will be in dist/ems-frontend
+```
+
+**Backend:**
+
+```bash
+cd ems-backend
+mvn clean package -DskipTests
+# Output will be ems-backend-0.0.1-SNAPSHOT.jar in target/
 ```
 
 ## 📄 License
 
-This project is private and intended for use by the District Development Office, Bharuch.
-All rights reserved.
+Private Organization Use. All rights reserved.

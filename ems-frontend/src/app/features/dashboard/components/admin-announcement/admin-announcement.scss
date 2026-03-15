@@ -1,0 +1,131 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+
+.admin-announcement-card {
+  --app-card-padding: 32px;
+}
+
+.md3-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 32px;
+  }
+}
+
+.half-width {
+  flex: 1;
+}
+
+.md3-label {
+  font: var(--md-sys-typescale-label-small, 700 10px/16px var(--md-sys-typescale-font-family));
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.md3-input, .md3-select {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--md-sys-color-surface-variant);
+  border: 1px solid transparent;
+  border-radius: var(--md-sys-shape-corner-medium);
+  font: var(--md-sys-typescale-body-large);
+  color: var(--md-sys-color-on-surface);
+  transition: all var(--md-sys-motion-duration-long) var(--md-sys-motion-easing-standard);
+  box-sizing: border-box;
+
+  &::placeholder {
+    color: var(--md-sys-color-secondary);
+  }
+
+  &:focus {
+    outline: none;
+    background-color: var(--md-sys-color-surface);
+    border-color: var(--md-sys-color-primary);
+    box-shadow: 0 0 0 4px rgba(26, 115, 232, 0.1);
+  }
+}
+
+.md3-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.md3-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  .md3-select {
+    appearance: none;
+    padding-right: 48px;
+    cursor: pointer;
+  }
+
+  .dropdown-icon {
+    position: absolute;
+    right: 16px;
+    color: var(--md-sys-color-on-surface-variant);
+    pointer-events: none;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}
+
+.md3-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 32px;
+  height: 48px;
+  font: var(--md-sys-typescale-label-large);
+  font-weight: 700;
+  border-radius: 24px;
+  border: none;
+  cursor: pointer;
+  transition: all var(--md-sys-motion-duration-short) ease;
+
+  &.filled-btn {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+
+    &:hover:not(:disabled) {
+      background-color: var(--md-sys-color-on-primary-container); // Darker primary for hover
+      box-shadow: var(--md-sys-elevation-2);
+    }
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .spin-icon {
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  100% { transform: rotate(360deg); }
+}

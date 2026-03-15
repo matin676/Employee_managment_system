@@ -1,51 +1,55 @@
-# dependencies
-/node_modules
-/.pnp
-.pnp.*
-
-# testing
-/coverage
-
-# next.js
-/.next/
-/out/
-
-# production
-/build
-
-# misc
+# System Files
 .DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-.pnpm-debug.log*
-
-# env files (NEVER commit these)
-.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-# vercel
-.vercel
-
-# typescript
-*.tsbuildinfo
-next-env.d.ts
-
-# Prisma
-/prisma/*.db
-/prisma/*.db-journal
+Thumbs.db
+*.swp
+*.swo
 
 # IDEs
 .vscode/
 .idea/
-*.swp
-*.swo
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.sts4-cache
+.factorypath
+.recommenders/
 
-# Temporary Files
-lint-output*.txt
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+.npm/
+
+# Environment Files
+.env
+.env.local
+.env.*.local
+*.properties
+!env.properties.example
+
+# Java / Maven
+target/
+*.class
+*.jar
+*.war
+*.ear
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/wrapper/maven-wrapper.jar
+
+/.agent

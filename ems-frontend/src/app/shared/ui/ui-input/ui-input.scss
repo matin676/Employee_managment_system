@@ -1,0 +1,50 @@
+@use 'styles/variables' as *;
+
+/* Inherits most styles from global .md3-field and .field-input in styles.scss */
+
+.field-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.icon-container {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.field-icon {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 20px;
+  transition: color var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+.field-container:focus-within {
+  .field-icon {
+    color: var(--md-sys-color-primary);
+  }
+}
+
+.field-input.has-icon {
+  padding-left: 48px;
+}
+
+.field-error {
+  animation: fade-in var(--md-sys-motion-duration-short) var(--md-sys-motion-easing-standard);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

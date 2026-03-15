@@ -1,0 +1,73 @@
+<div class="page-container">
+  <main class="profile-main-area">
+    <header class="page-header">
+      <h2 class="page-title">User Profile</h2>
+      <p class="welcome-text">Manage your account and security settings</p>
+    </header>
+
+    <div class="profile-content-grid">
+      <!-- User Details Card -->
+      <section class="md3-card profile-card">
+        <div class="profile-header">
+          <div class="avatar-large">
+            {{ authService.user()?.email?.charAt(0)?.toUpperCase() || 'U' }}
+          </div>
+          <div class="profile-header-info">
+            <h3 class="user-email">{{ authService.user()?.email }}</h3>
+            <div class="role-badge-container">
+              <app-badge type="accent">{{ authService.user()?.role }}</app-badge>
+              <span class="user-id"> ID: {{ authService.user()?.id?.slice(-8) || 'N/A' }} </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="profile-details">
+          <div class="detail-group">
+            <label class="detail-label">Email Address</label>
+            <p class="detail-value">{{ authService.user()?.email }}</p>
+          </div>
+          <div class="detail-group">
+            <label class="detail-label">Employee Full ID</label>
+            <p class="detail-value mono-text">{{ authService.user()?.id || 'N/A' }}</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Security Settings -->
+      <section class="md3-card security-card">
+        <h3 class="section-title">Security Settings</h3>
+
+        <form (ngSubmit)="changePassword()" class="security-form">
+          <div class="md3-field">
+            <label class="field-label">Current Password</label>
+            <input
+              type="password"
+              [(ngModel)]="currentPassword"
+              name="currentPassword"
+              class="field-input"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <div class="md3-field">
+            <label class="field-label">New Password</label>
+            <input
+              type="password"
+              [(ngModel)]="newPassword"
+              name="newPassword"
+              class="field-input"
+              placeholder="Enter new password"
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="md3-btn primary-btn">
+              <span class="material-symbols-outlined icon">key</span>
+              <span>Update Password</span>
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+</div>

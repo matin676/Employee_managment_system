@@ -1,0 +1,76 @@
+<div class="page-container">
+  <main class="main-area">
+    <header class="page-header">
+      <div class="header-text-group">
+        <h2 class="page-title">Active Projects</h2>
+        <p class="welcome-text">Manage and track your team's progress</p>
+      </div>
+
+      @if (authService.isAdmin()) {
+        <a routerLink="/projects/new" class="md3-btn primary-btn">
+          <span class="material-symbols-outlined icon">add</span>
+          <span>New Project</span>
+        </a>
+      }
+    </header>
+
+    @if (error()) {
+      <div class="md3-alert error-alert">
+        <span class="material-symbols-outlined">error</span>
+        <span class="alert-text">{{ error() }}</span>
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="projects-grid">
+        <app-skeleton-card></app-skeleton-card>
+        <app-skeleton-card></app-skeleton-card>
+        <app-skeleton-card></app-skeleton-card>
+      </div>
+    } @else if (projects().length === 0) {
+      <div class="md3-card empty-state-card">
+        <div class="empty-icon-container">
+          <span class="material-symbols-outlined">folder_open</span>
+        </div>
+        <h3 class="empty-title">No projects yet</h3>
+        <p class="empty-text">
+          Get started by creating your first project and assigning it to your team.
+        </p>
+      </div>
+    } @else {
+      <div class="projects-grid">
+        @for (project of projects(); track project.id) {
+          <div class="md3-card project-card" [routerLink]="['/projects', project.id]">
+            <article class="card-action-area" tabindex="0">
+              <div class="card-header">
+                <div class="icon-container">
+                  <span class="material-symbols-outlined">work</span>
+                </div>
+                <app-badge [type]="getBadgeType(project.status)">
+                  {{ project.status }}
+                </app-badge>
+              </div>
+
+              <div class="card-content">
+                <h3 class="project-name">{{ project.name }}</h3>
+                <p class="project-description text-truncate-2">
+                  {{ project.description || 'No description provided.' }}
+                </p>
+              </div>
+
+              <div class="divider"></div>
+
+              <div class="card-footer">
+                <div class="project-id">
+                  <span class="id-label">ID</span>
+                  <span class="id-value">{{ project.id.slice(-8) }}</span>
+                </div>
+                <span class="view-details-link">View Details &rarr;</span>
+              </div>
+            </article>
+          </div>
+        }
+      </div>
+    }
+  </main>
+</div>
