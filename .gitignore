@@ -33,8 +33,7 @@ dist/
 .env
 .env.local
 .env.*.local
-*.properties
-!env.properties.example
+env.properties.example
 
 # Java / Maven
 target/
