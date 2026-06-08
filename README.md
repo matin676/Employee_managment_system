@@ -94,7 +94,3 @@ cd ems-backend
 mvn clean package -DskipTests
 # Output will be ems-backend-0.0.1-SNAPSHOT.jar in target/
 ```
-
-## 📄 License
-
-Private Organization Use. All rights reserved.
